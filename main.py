@@ -19,7 +19,10 @@ def main():
         table_names = [table.table_id for table in tables]
         table_id = 'Daily_sales_report.Big_Basket'
         table = client.get_table(table_id)
-        st.write(table.schema)
+        job_config = bigquery.QueryJobConfig(write_disposition = "WRITE_APPEND",schema=bigquery.Schema(table.schema),)
+        job = client.load_table_from_dataframe(df, table_id, job_config=job_config)
+#         st.write(table.schema)
+
         
 #         if 'Big_Basket' in table_names:
 #             table_id_1 = 'Daily_sales_report.Big_Basket'
