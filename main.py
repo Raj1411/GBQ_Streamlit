@@ -7,10 +7,10 @@ def main():
     st.title("Streamlit + BigQuery")
     file_upload = st.file_uploader("Upload a CSV file", type=["csv","txt","xlsx"])
     if file_upload:
-         if file_upload.type == "text/csv":
+        if file_upload.type == "text/csv":
             df = pd.read_csv(file_upload)
             df.to_gbq(destination_table="Daily_sales_report.Big_Basket", project_id="crafty-hook-331815", if_exists="append")
-         else:
+        else:
             df = pd.read_excel(file_upload)
             df.to_gbq(destination_table="Daily_sales_report.Big_Basket", project_id="crafty-hook-331815", if_exists="append")
 
