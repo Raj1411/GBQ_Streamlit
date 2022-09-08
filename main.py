@@ -1,6 +1,9 @@
 import pandas as pd
 from pandas.io import gbq
 import streamlit as st
+from google.oauth2 import service_account
+from google.cloud import bigquery
+
 
 
 def main():
