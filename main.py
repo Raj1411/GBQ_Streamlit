@@ -15,13 +15,15 @@ def main():
     file_upload = st.file_uploader("Upload a CSV file", type=["csv","txt","xlsx"])
     if file_upload:
         df = pd.read_csv(file_upload)
-        table_id = 'Daily_sales_report.Big_Basket'
-        job = client.load_table_from_dataframe(df, table_id)
+        tables = list(client.list_tables('Daily_sales_report'))
+        table_names = [table.table_id for table in tables]
+        if 'Big_Basket' in table_names:
+            table_id = 'Daily_sales_report.Big_Basket'
+            job = client.update_table_from_dataframe(df, table_id)
+        else:
+            table_id = 'Daily_sales_report.Big_Basket'
+            job = client.load_table_from_dataframe(df, table_id)
         
-    tables = list(client.list_tables('Daily_sales_report'))
-    table_names = [table.table_id for table in tables]
-    if 'Big_Basket' in table_names:
-        st.write('Table exists.')
 
 
 
