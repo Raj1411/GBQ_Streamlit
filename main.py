@@ -17,6 +17,8 @@ def main():
         df = pd.read_csv(file_upload)
         table_id = 'Daily_sales_report.Big_Basket'
         job = client.load_table_from_dataframe(df, table_id)
+        job.write_disposition = 'WRITE_TRUNCATE'
+        job.result()
 
 
 
