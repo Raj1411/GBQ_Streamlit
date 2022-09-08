@@ -17,8 +17,11 @@ def main():
         df = pd.read_csv(file_upload)
         table_id = 'Daily_sales_report.Big_Basket'
         job = client.load_table_from_dataframe(df, table_id)
-        job.write_disposition = 'WRITE_TRUNCATE'
-        job.result()
+        
+    tables = list(client.list_tables('Daily_sales_report'))
+    table_names = [table.table_id for table in tables]
+    if 'Big_Basket' in table_names:
+        st.write('Table exists.')
 
 
 
