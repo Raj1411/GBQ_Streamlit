@@ -18,11 +18,11 @@ def main():
         tables = list(client.list_tables('Daily_sales_report'))
         table_names = [table.table_id for table in tables]
         if 'Big_Basket' in table_names:
-            table_id = 'Daily_sales_report.Big_Basket'
-            job = client.update_table_from_dataframe(df, table_id)
+            table_id_1 = 'Daily_sales_report.Big_Basket'
+            job = client.update_table_from_dataframe(df, table_id_1)
         else:
-            table_id = 'Daily_sales_report.Big_Basket'
-            job = client.load_table_from_dataframe(df, table_id)
+            table_id_2 = 'Daily_sales_report.Big_Basket'
+            job = client.load_table_from_dataframe(df, table_id_2)
         
 
 
