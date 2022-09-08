@@ -19,7 +19,7 @@ def main():
         table_names = [table.table_id for table in tables]
         table_id = 'Daily_sales_report.Big_Basket'
         table = client.get_table(table_id)
-        job_config = bigquery.LoadJobConfig(write_disposition = "WRITE_APPEND",schema=table.schema,)
+        job_config = bigquery.LoadJobConfig(write_disposition = "WRITE_TRUNCATE",schema=table.schema,)
         job = client.load_table_from_dataframe(df, table_id, job_config=job_config)
 #         st.write(table.schema)
 
